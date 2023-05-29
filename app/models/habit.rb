@@ -1,5 +1,6 @@
 class Habit < ApplicationRecord
   has_many :progresses
+  validates :name, presence: true, uniqueness: true
 
   def calculate_completed_streak(start_date)
     streak = 0

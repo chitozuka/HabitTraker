@@ -2,19 +2,27 @@
 
 <%= link_to "Edit Habit", edit_habit_path(@habit) %>
 
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: key) %>
+<% end %>
+
+<!-- エラーメッセージの表示 -->
+<% if @progress.errors.any? || @habit.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@progress.errors.count + @habit.errors.count, "error") %> prohibited this progress from being saved:</h2>
+    <ul>
+      <% @progress.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <% @habit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <!-- 進捗フォーム -->
 <%= form_with(model: @progress, url: create_progress_habit_path(@habit)) do |form| %>
-  <% if @progress.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@progress.errors.count, "error") %> prohibited this progress from being saved:</h2>
-      <ul>
-        <% @progress.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= form.label :date %>
     <%= form.date_field :date %>
