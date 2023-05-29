@@ -1,0 +1,13 @@
+<h1>Habits</h1>
+
+<%= link_to "New Habit", new_habit_path %>
+
+<ul>
+  <% @habits.each do |habit| %>
+    <li>
+      <%= link_to habit.name, habit %>
+      <% yesterday = Date.yesterday %>
+      継続<%= habit.calculate_completed_streak(yesterday) %>
+    </li>
+  <% end %>
+</ul>

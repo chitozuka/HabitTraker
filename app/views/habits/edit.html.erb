@@ -1,0 +1,23 @@
+<h1>Edit Habit</h1>
+
+<%= form_with(model: @habit, url: habit_path(@habit), method: :patch) do |form| %>
+  <% if @habit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@habit.errors.count, "error") %> prohibited this habit from being saved:</h2>
+      <ul>
+        <% @habit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update Habit" %>
+  </div>
+<% end %>

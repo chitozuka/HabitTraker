@@ -1,0 +1,55 @@
+<h1><%= @habit.name %></h1>
+
+<%= link_to "Edit Habit", edit_habit_path(@habit) %>
+
+<!-- 進捗フォーム -->
+<%= form_with(model: @progress, url: create_progress_habit_path(@habit)) do |form| %>
+  <% if @progress.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@progress.errors.count, "error") %> prohibited this progress from being saved:</h2>
+      <ul>
+        <% @progress.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :completed %>
+    <%= form.check_box :completed %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create Progress" %>
+  </div>
+<% end %>
+
+<h2>Progress:</h2>
+<ul>
+  <% start_date = Date.today %>
+  <% end_date = start_date - 13.days %>
+  <% (end_date..start_date).each do |date| %>
+    <% progress = @habit.progresses.find_by(date: date) %>
+    <li>
+      <%= date %>
+      <% if progress %>
+        <% if progress.completed %>
+          OK
+        <% else %>
+          --
+        <% end %>
+        <%= button_to habit_progress_path(@habit, progress), method: :delete, data: { confirm: "Are you sure you want to delete this progress?" }, class: "delete-button" do %>
+          Delete
+        <% end %>
+      <% else %>
+        --
+      <% end %>
+    </li>
+  <% end %>
+</ul>
