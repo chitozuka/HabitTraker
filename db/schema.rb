@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_29_042154) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_033430) do
   create_table "habits", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_042154) do
     t.boolean "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "memo"
     t.index ["habit_id"], name: "index_progresses_on_habit_id"
   end
 

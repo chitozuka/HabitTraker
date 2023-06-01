@@ -18,7 +18,10 @@ class HabitsController < ApplicationController
   end
 
   def show
-    @habit = Habit.find(params[:id])
+    @habit = Habit.includes(:progresses).find(params[:id])
+    @end_date = Date.today
+    @start_date = @end_date - 14
+    @progress_records = @habit.progresses.where(date: @start_date..@end_date).index_by(&:date)
     @progress = Progress.new
   end
 
@@ -36,23 +39,15 @@ class HabitsController < ApplicationController
     end
   end
 
-  def create_progress
+  def destroy
     @habit = Habit.find(params[:id])
-    @progress = @habit.progresses.build(progress_params)
-    if @progress.save
-      redirect_to habit_path(@habit), notice: 'Progress was successfully created.'
-    else
-      redirect_to habit_path(@habit), alert: 'Failed to create progress.'
-    end
+    @habit.destroy
+    redirect_to habits_path, notice: 'Habit was successfully deleted.'
   end
 
   private
 
   def habit_params
     params.require(:habit).permit(:name)
-  end
-
-  def progress_params
-    params.require(:progress).permit(:date, :completed, :description)
   end
 end

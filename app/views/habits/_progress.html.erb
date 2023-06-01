@@ -1,0 +1,9 @@
+<%
+  start_date = Date.today - 14
+  end_date = Date.today
+  progress_records = habit.get_progress_records(start_date, end_date)
+%>
+<% (start_date..end_date).each do |date| %>
+  <% completed = progress_records[date] == true || false %>
+  <%= completed_icon(completed) %>
+<% end %>

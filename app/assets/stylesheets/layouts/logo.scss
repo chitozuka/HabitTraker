@@ -1,0 +1,41 @@
+$primary-color: #ff0000;  // ロゴのプライマリカラーを指定します
+$secondary-color: #ffffff;  // ロゴのセカンダリカラーを指定します
+$font-family: 'Arial', sans-serif;  // ロゴのフォントファミリーを指定します
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: $font-family;
+  font-size: 24px;
+  letter-spacing: 4px;
+}
+
+.logo__icon {
+  color: $primary-color;
+  font-size: 32px;
+  margin-right: 4px;
+}
+
+.logo__text {
+  color: $secondary-color;
+  font-weight: bold;
+}
+
+.logo::before,
+.logo::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: $secondary-color;
+  border-radius: 50%;
+  margin: 0 4px;
+}
+
+.logo::before {
+  margin-right: 10px;
+}
+
+.logo::after {
+  margin-left: 10px;
+}
