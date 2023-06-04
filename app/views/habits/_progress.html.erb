@@ -1,9 +1,35 @@
 <%
-  start_date = Date.today - 14
+  start_date = Date.today - 34
   end_date = Date.today
   progress_records = habit.get_progress_records(start_date, end_date)
+  continuous_coutinuity_count = 0
 %>
-<% (start_date..end_date).each do |date| %>
-  <% completed = progress_records[date] == true || false %>
-  <%= completed_icon(completed) %>
+<% if params[:minus] == 'true' %>
+  <%= button_to habit_path(habit), method: :delete, class: "delete-button" , data: { confirm: "Are you sure you want to delete this progress?" } do %>
+    <i class="fas fa-trash"></i>
+  <% end %>
 <% end %>
+<div class="habit-progress">
+  <%= link_to habit_path(habit) do %>
+    <% (start_date..end_date).each do |date| %>
+      <% completed = progress_records[date] == true || false %>
+        <%= completed_icon(completed) %>
+        <%
+          if completed
+            continuous_coutinuity_count += 1
+          else
+            continuous_coutinuity_count = 0 if date != end_date
+          end
+        %>
+    <% end %>
+  <% end %>
+</div>
+<div class="habit-details">
+  <div class="progress-continuous-coutinuity-count">
+    <i class="counter-icon fas fa-sync-alt"></i>
+    <%= continuous_coutinuity_count %>
+  </div>
+  <div class="progress-habit-title">
+  <%= habit.name %>
+  </div>
+</div>

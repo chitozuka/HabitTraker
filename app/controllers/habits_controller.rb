@@ -1,9 +1,12 @@
 class HabitsController < ApplicationController
   def index
+    @minus = params[:minus]
+    @is_top_page = (@minus.nil? || @minus == false)
     @habits = Habit.all
   end
 
   def new
+    @is_create_habit_page = true
     @habit = Habit.new
   end
 

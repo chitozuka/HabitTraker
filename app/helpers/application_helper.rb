@@ -15,9 +15,9 @@ module ApplicationHelper
 
   def completed_icon(completed)
     if completed
-      "■"
+      "<div class='completed-icon completed'></div>".html_safe
     else
-      "□"
+      "<div class='completed-icon'></div>".html_safe
     end
   end
 end

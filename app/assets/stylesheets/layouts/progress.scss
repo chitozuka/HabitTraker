@@ -1,0 +1,31 @@
+.completed-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(235, 239, 234);
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  // 他のスタイルプロパティやセレクタを追加できます
+}
+
+.completed-icon.completed {
+  background-color: rgb(140, 165, 223);
+}
+
+.progress-habit-title {
+  text-align: center;
+}
+
+.progress-continuous-coutinuity-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .counter-icon {
+    margin-right: 5px;
+    font-size: 18px;
+    color: rgb(140, 165, 223);
+  }
+}

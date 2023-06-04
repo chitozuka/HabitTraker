@@ -50,8 +50,8 @@ gem "bootsnap", require: false
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
-gem "bootstrap4-datetime-picker-rails"
 gem 'momentjs-rails'
+gem 'font-awesome-sass'
 gem 'net-http'
 
 group :development, :test do

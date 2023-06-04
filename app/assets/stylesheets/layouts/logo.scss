@@ -13,7 +13,6 @@ $font-family: 'Arial', sans-serif;  // ロゴのフォントファミリーを�
 .logo__icon {
   color: $primary-color;
   font-size: 32px;
-  margin-right: 4px;
 }
 
 .logo__text {
@@ -29,13 +28,4 @@ $font-family: 'Arial', sans-serif;  // ロゴのフォントファミリーを�
   height: 6px;
   background-color: $secondary-color;
   border-radius: 50%;
-  margin: 0 4px;
-}
-
-.logo::before {
-  margin-right: 10px;
-}
-
-.logo::after {
-  margin-left: 10px;
 }

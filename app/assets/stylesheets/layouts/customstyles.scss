@@ -1,0 +1,30 @@
+body {
+  padding-top: 10px; /* headerの高さに合わせて調整してください */
+}
+
+header {
+  padding: 10px; /* 必要なパディングの値に合わせて調整してください */
+}
+
+.navbar-nav {
+  justify-content: flex-end;
+}
+
+.disabled-link {
+  i {
+    color: #888888;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  color: #000;
+  display: inline-block;
+  margin-left: auto;
+}

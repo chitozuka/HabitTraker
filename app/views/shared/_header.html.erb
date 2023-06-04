@@ -1,18 +1,30 @@
-<header class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
-    <%= link_to "HabitTracker", root_path, class: "logo" %>
+<header class="stricy-top" style="width: 600px;">
+  <nav class="navbar navbar-expand navbar-dark bg-dark text-white">
+    <div class="logo">HabitTracker</div>
     <nav>
-      <ul class="nav navbar-nav navbar-left">
-        <% if controller_name == "habits" && action_name == "show" %>
-          <li>
-            <%= link_to icon("gear", class: "text-gray"),   edit_habit_path(@habit) %>
-          </li>
-        <% end %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "New Habit", new_habit_path %></li>
-        <li><%= link_to "Home",   root_path %></li>
+      <ul class="nav navbar-nav flex-row">
+        <li>
+          <% if @is_create_habit_page %>
+            <a class="nav-link disabled-link" href="#"><i class="fas fa-plus disabled"></i></a>
+          <% else %>
+            <%= link_to new_habit_path do %><i class="fas fa-plus"></i><% end %>
+          <% end %>
+        <li>
+        <li>
+          <% if @minus %>
+            <a class="nav-link disabled-link" href="#"><i class="fas fa-minus disabled"></i></a>
+          <% else %>
+            <%= link_to root_path(minus: true) do %><i class="fas fa-minus"></i><% end %>
+          <% end %>
+        <li>
+        <li>
+          <% if @is_top_page %>
+            <a class="nav-link disabled-link" href="#"><i class="fas fa-home disabled"></i></a>
+          <% else %>
+            <%= link_to root_path do %><i class="fas fa-home"></i><% end %>
+          <% end %>
+        </li>
       </ul>
     </nav>
-  </div>
+  </nav>
 </header>
